@@ -1,6 +1,6 @@
 # Using FishScaleMeasurements
 
-1. Get "FishScaleMeasuremetns.txt" macro from the [GitHub repo](https://github.com/droglenc/miscJ).
+1. Get "FishScaleMeasurements.txt" macro -- right-click on [this link](https://raw.githubusercontent.com/droglenc/miscJ/master/FishScaleMeasurements.txt).
 
 1. Install the macro in ImageJ
     1. Open ImageJ
