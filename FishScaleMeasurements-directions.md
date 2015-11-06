@@ -1,6 +1,6 @@
 # Using FishScaleMeasurements
 
-1. Get "FishScaleMeasuremetns.txt" macro from the GitHub repo.
+1. Get "FishScaleMeasuremetns.txt" macro from the [GitHub repo](https://github.com/droglenc/miscJ).
 
 1. Install the macro in ImageJ
     1. Open ImageJ
@@ -21,9 +21,3 @@
     1. This should open a "Results" window that will have the information you just entered plus incremental measurements between annuli.
     1. Repeat these steps for other structures (measurements will be appended to previous measurements in the "Results" window).
     1. Select `File` and `Save As` menu items on the "Results" window to save the measurements.
-    
-<style type="text/css">
-ol ol {
-  list-style-type: lower-alpha;
-}
-</style>
