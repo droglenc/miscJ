@@ -1,0 +1,41 @@
+// FishScaleMeasurements.txt
+// This macro lists the lengths of each segment of
+// a segmented line selection on a fish scale.  It
+// also askes for input of fish number and scale
+//  number.  It uses z as a shortcut letter.
+//
+// This was modified from ListSelectionCoordinates.txt macro
+// This is a further modification (by Ben Neely) that added
+//   a couple more fields to the results.
+
+macro "Fish Scales [z]" {
+  if (selectionType==-1)
+      exit("Selection required");
+  getSelectionCoordinates(x, y);
+  getPixelSize(unit, pixelWidth, pixelHeight);
+  row = nResults;
+
+  fish = getString("Enter Fish Number:", fish);
+  setResult("Fish",row,fish);
+  tl=getString("Enter Total Length:", tl);
+  setResult("TL",row,tl);
+  sc = getString("Enter Species:", 1);
+  setResult("Species",row,sc);
+  R1age = getString("Enter Reader 1 Age:", 0);
+  setResult("Reader 1 Age",row,R1age);
+  R2age = getString("Enter Reader 2 Age:", 0);
+  setResult("Reader 2 Age",row,R2age);
+  consensusage = getString("Enter Consensus Age:", 0);
+  setResult("Consensus Age",row,consensusage);
+
+  n = x.length;
+  for (i=0; i<(n-1); i++) {
+      dx = (x[(i+1)%n] - x[i])*pixelWidth;
+      dy = (y[(i+1)%n] - y[i])*pixelHeight;
+      length = sqrt(dx*dx+dy*dy);
+      if (i<n-1 || selectionType<=4) {
+          setResult("Inc_"+i+1, row, length);
+      }      
+  }
+  updateResults();
+}
