@@ -1,0 +1,35 @@
+//////////////////////////////////////////////////////////
+// Show2Assessments.txt                                 //
+// Used to select an image and superimpose the two ROIs //
+// from DHO (blue) and TAL (red).  Press Z to select    //
+// the image.                                           //
+//////////////////////////////////////////////////////////
+macro "Show2Assessments [z]" {
+  // Close any open images //
+  if (nImages>0) close();
+ 
+  // Delete all items in the ROI list //
+  roiManager("reset");
+
+  // User chooses an image //
+  jpg = File.openDialog("Select a File");
+  open(jpg);
+  dir = File.directory;
+  jpg = File.nameWithoutExtension;
+  
+  // Get DHO's ROI //
+  roiManager("Open", dir+jpg+"_DHO.roi");
+  roiManager("Select", 0);
+  roiManager("Set Color", "blue");
+  roiManager("Set Line Width", 1);
+
+  // Get TAL's ROI //
+  roiManager("Open", dir+jpg+"_TAL.roi");
+  roiManager("Select", 1);
+  roiManager("Set Color", "red");
+  roiManager("Set Line Width", 1);
+
+  // Show Both //
+  roiManager("Show All");
+  setTool("zoom");
+}

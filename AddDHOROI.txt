@@ -1,0 +1,29 @@
+/////////////////////////////////////////////////////////
+// Once an image is opened, the user puts multi-points //
+// on annuli.  With this image installed, the user     //
+// presses 'a', select the name of the current image   //
+// file, a ROI is created and then saved with the new  //
+// being the image file name and '_DHO.ROI'.  The user //
+// can then select another file to open and the zoom   //
+// tool will be selected.                              //
+/////////////////////////////////////////////////////////
+macro "Add DHO ROI [a]" {
+  // Have user identify the image //
+  File.openDialog("Select a File");
+  dir = File.directory;
+  jpg = File.nameWithoutExtension;
+
+  // Add a ROI and select it //
+  roiManager("Add", "0000ff");
+  roiManager("Select", 0);
+  
+  // Save the ROI, close the image, delete the ROI //
+  saveAs("Selection", dir+jpg+"_DHO.roi");
+  close();
+  roiManager("Delete");
+
+  // User chooses a new image //
+  jpg = File.openDialog("Select a File");
+  open(jpg);
+  setTool("zoom");
+}
